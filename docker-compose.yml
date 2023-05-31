@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.34.3-jammy
+    volumes:
+      - ~/.Xauthority:/.Xauthority
+      - ./:/playwright
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    working_dir: /playwright
+    environment:
+ #     - DEBUG=pw:*
+      - DISPLAY=$DISPLAY
+    command: ["sh", "-c" ,"chmod 777 /root -R; tail -f /dev/null"]
+    network_mode: "host"
